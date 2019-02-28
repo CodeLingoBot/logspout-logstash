@@ -53,7 +53,7 @@ func NewLogstashAdapter(route *router.Route) (router.LogAdapter, error) {
 	}
 }
 
-// Get container tags configured with the environment variable LOGSTASH_TAGS
+// GetContainerTags gets container tags configured with the environment variable LOGSTASH_TAGS
 func GetContainerTags(c *docker.Container, a *LogstashAdapter) []string {
 	if tags, ok := a.containerTags[c.ID]; ok {
 		return tags
@@ -77,7 +77,7 @@ func GetContainerTags(c *docker.Container, a *LogstashAdapter) []string {
 	return tags
 }
 
-// Get logstash fields configured with the environment variable LOGSTASH_FIELDS
+// GetLogstashFields gets logstash fields configured with the environment variable LOGSTASH_FIELDS
 func GetLogstashFields(c *docker.Container, a *LogstashAdapter) map[string]string {
 	if fields, ok := a.logstashFields[c.ID]; ok {
 		return fields
@@ -105,7 +105,7 @@ func GetLogstashFields(c *docker.Container, a *LogstashAdapter) map[string]strin
 	return fields
 }
 
-// Get boolean indicating whether json logs should be decoded (or added as message),
+// IsDecodeJsonLogs gets boolean indicating whether json logs should be decoded (or added as message),
 // configured with the environment variable DECODE_JSON_LOGS
 func IsDecodeJsonLogs(c *docker.Container, a *LogstashAdapter) bool {
 	if decodeJsonLogs, ok := a.decodeJsonLogs[c.ID]; ok {
